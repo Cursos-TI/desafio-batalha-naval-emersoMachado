@@ -14,32 +14,31 @@ int main()
   int board[10][10] = {0};
   int shipX[3] = {3, 4, 5};
   int shipY[3] = {0, 1, 2};
+  int shipXY1[3][2] = {{6, 6}, {7, 7},{8, 8}};
+  int shipXY2[3][2] = {{9, 0}, {8, 1},{7, 2}};
 
   for (int i = 0; i < 10; i++)
   {
     for (int j = 0; j < 10; j++)
     {
-      int isShipXFound = 0;
+      int isShipFound = 0;
+
       for (int x = 0; x < 3; x++)
       {
         if (shipX[x] == j && i == 0)
-        {
-          printf("3s ");
-          isShipXFound = 1;
-        }
+          isShipFound = 1;
+        else if (shipY[x] == i && j == 0)
+          isShipFound = 1;
+        else if(shipXY1[x][0] == j && shipXY1[x][1] == i)
+          isShipFound = 1;
+        else if(shipXY2[x][0] == j && shipXY2[x][1] == i)
+          isShipFound = 1;
       }
 
-      int isShipYFound = 0;
-      for (int x = 0; x < 3; x++)
-      {
-        if (shipY[x] == i && j == 0)
-        {
-          printf("3s ");
-          isShipYFound = 1;
-        }
-      }
-      if (isShipXFound == 0 && isShipYFound == 0)
+      if (isShipFound == 0)
         printf("0s ");
+      else
+        printf("3s ");
     }
     printf("\n");
   }
